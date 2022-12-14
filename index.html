@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!--
+        :style es un shorthand de v-bind para estilos dinámicos, en este caso
+        se está seteando la propiedad de css boder-color según el valor de
+        boxAselected. Sin embargo no es buena práctica hacer line-styles
+      -->
+      <!--       <div class="demo"
+          :style="{borderColor: boxASelected ? 'red' : '#ccc'}"
+          @click="boxSelected('A')"
+      ></div> -->
+      <!--
+        para agregar clases dinámicamente en vue, se utiliza el shorthand
+        :class y cómo valor se puede utilizar código js + los nombres de las
+        clases.
+        vue tiene una sintáxis especial para poder leer con mayor facilidad
+        el código que inyecta clases dinámicas mediante un objeto, en este caso la clase active se habilita según el método boxASelected.
+        active puede recibir multiples clases.
+        la clase demo siempre existe, entonces se agrega como un atributo normal
+      -->
+      <div
+        class="demo"
+        :class="boxAClases"
+        @click="boxSelected('A')"
+      ></div>
+      <div
+        class="demo"
+        :class="{active: boxBSelected}"
+        @click="boxSelected('B')"
+      ></div>
+      <!--
+        vue permite bindear multiples clases mediante un arreglo de valores
+        que pueden ser un objeto o un string si la clase está hardcodeada
+      -->
+      <div
+        :class="['demo', {active: boxCSelected}]"
+        @click="boxSelected('C')"
+      ></div>
+    </section>
+  </body>
+</html>
